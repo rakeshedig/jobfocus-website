@@ -37,7 +37,7 @@
             text-decoration: none;
             margin-top: 1rem;
         }
-        input, textarea, button {
+        input, textarea, button, select {
             display: block;
             width: 100%;
             margin-bottom: 1rem;
@@ -71,10 +71,24 @@
 <section id="job-tracker">
     <h2>Job Tracker</h2>
     <form id="jobForm">
-        <input type="text" id="company" placeholder="Company Name" required>
-        <input type="text" id="position" placeholder="Position" required>
-        <input type="text" id="status" placeholder="Status (Applied/Interview/Offer)" required>
-        <textarea id="notes" placeholder="Notes (optional)"></textarea>
+        <input type="text" id="position" placeholder="Position Title*" required>
+        <input type="text" id="company" placeholder="Company*" required>
+        <input type="text" id="location" placeholder="Location*" required>
+        <select id="jobType" required>
+            <option value="">Select Job Type*</option>
+            <option value="Internship">Internship</option>
+            <option value="Full-Time">Full-Time</option>
+        </select>
+        <select id="jobStatus" required>
+            <option value="">Select Job Status*</option>
+            <option value="Applied">Applied</option>
+            <option value="Interview">Interview</option>
+            <option value="Offer">Offer</option>
+        </select>
+        <input type="text" id="salary" placeholder="Salary">
+        <input type="url" id="jobUrl" placeholder="Job URL">
+        <textarea id="jobDescription" placeholder="Job Description (up to 5000 characters)" maxlength="5000"></textarea>
+        <textarea id="resumeSubmitted" placeholder="Resume Submitted (up to 5000 characters)" maxlength="5000"></textarea>
         <button type="submit">Add Job</button>
     </form>
 
@@ -97,17 +111,27 @@
     jobForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        const company = document.getElementById('company').value;
         const position = document.getElementById('position').value;
-        const status = document.getElementById('status').value;
-        const notes = document.getElementById('notes').value;
+        const company = document.getElementById('company').value;
+        const location = document.getElementById('location').value;
+        const jobType = document.getElementById('jobType').value;
+        const jobStatus = document.getElementById('jobStatus').value;
+        const salary = document.getElementById('salary').value;
+        const jobUrl = document.getElementById('jobUrl').value;
+        const jobDescription = document.getElementById('jobDescription').value;
+        const resumeSubmitted = document.getElementById('resumeSubmitted').value;
 
         const jobEntry = document.createElement('div');
         jobEntry.classList.add('job-entry');
-        jobEntry.innerHTML = `<strong>Company:</strong> ${company} <br>
-                              <strong>Position:</strong> ${position} <br>
-                              <strong>Status:</strong> ${status} <br>
-                              <strong>Notes:</strong> ${notes}`;
+        jobEntry.innerHTML = `<strong>Position:</strong> ${position} <br>
+                              <strong>Company:</strong> ${company} <br>
+                              <strong>Location:</strong> ${location} <br>
+                              <strong>Job Type:</strong> ${jobType} <br>
+                              <strong>Job Status:</strong> ${jobStatus} <br>
+                              <strong>Salary:</strong> ${salary} <br>
+                              <strong>URL:</strong> <a href="${jobUrl}" target="_blank">${jobUrl}</a> <br>
+                              <strong>Job Description:</strong> ${jobDescription} <br>
+                              <strong>Resume Submitted:</strong> ${resumeSubmitted}`;
 
         jobList.appendChild(jobEntry);
 
