@@ -63,6 +63,11 @@
     <button onclick="newQuote()">Show Another Quote</button>
 </section>
 
+<section id="progress">
+    <h2>📊 Today's Progress</h2>
+    <p id="progressDisplay">You’ve applied to 0 jobs today.</p>
+</section>
+
 <section id="job-tracker">
     <h2>Job Tracker</h2>
     <form id="jobForm">
@@ -85,6 +90,9 @@
 <script>
     const jobForm = document.getElementById('jobForm');
     const jobList = document.getElementById('jobList');
+    const progressDisplay = document.getElementById('progressDisplay');
+
+    let dailyCount = 0;
 
     jobForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -102,6 +110,9 @@
                               <strong>Notes:</strong> ${notes}`;
 
         jobList.appendChild(jobEntry);
+
+        dailyCount++;
+        progressDisplay.innerText = `You’ve applied to ${dailyCount} job(s) today.`;
 
         jobForm.reset();
     });
