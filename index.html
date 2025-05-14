@@ -93,6 +93,108 @@
             JobFocus Coach</p>
     </footer>
 
-</body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobFocus Coach - Stay Motivated, Stay Consistent</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background: #4CAF50;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        section {
+            padding: 2rem;
+            max-width: 800px;
+            margin: auto;
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        .cta {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            margin-top: 1rem;
+        }
+        input, textarea, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+        }
+        .job-entry {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
 
+<header>
+    <h1>JobFocus Coach</h1>
+    <p>Stay Consistent. Stay Motivated. Land Your Dream Job.</p>
+</header>
+
+<section id="job-tracker">
+    <h2>Job Tracker</h2>
+    <form id="jobForm">
+        <input type="text" id="company" placeholder="Company Name" required>
+        <input type="text" id="position" placeholder="Position" required>
+        <input type="text" id="status" placeholder="Status (Applied/Interview/Offer)" required>
+        <textarea id="notes" placeholder="Notes (optional)"></textarea>
+        <button type="submit">Add Job</button>
+    </form>
+
+    <div id="jobList">
+        <h3>Tracked Jobs:</h3>
+    </div>
+</section>
+
+<footer>
+    <p>Connect with me on <a href="https://www.linkedin.com" style="color: #4CAF50;">LinkedIn</a> | &copy; 2024 JobFocus Coach</p>
+</footer>
+
+<script>
+    const jobForm = document.getElementById('jobForm');
+    const jobList = document.getElementById('jobList');
+
+    jobForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const company = document.getElementById('company').value;
+        const position = document.getElementById('position').value;
+        const status = document.getElementById('status').value;
+        const notes = document.getElementById('notes').value;
+
+        const jobEntry = document.createElement('div');
+        jobEntry.classList.add('job-entry');
+        jobEntry.innerHTML = `<strong>Company:</strong> ${company} <br>
+                              <strong>Position:</strong> ${position} <br>
+                              <strong>Status:</strong> ${status} <br>
+                              <strong>Notes:</strong> ${notes}`;
+
+        jobList.appendChild(jobEntry);
+
+        jobForm.reset();
+    });
+</script>
+
+</body>
 </html>
